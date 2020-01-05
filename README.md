@@ -10,5 +10,6 @@ npm install
 node server/app.js
 ```
 
+server will listen on port 3000
 
 Note: MySQL database is in database directory.
