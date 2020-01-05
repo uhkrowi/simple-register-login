@@ -1,0 +1,11 @@
+.err-msg {
+    font-size: 12px;
+    color: red;
+}
+
+.registration-form {
+    margin-top: 30px;
+    /* background-color: bisque;
+    padding: 25px;
+    border-radius: 10px; */
+}

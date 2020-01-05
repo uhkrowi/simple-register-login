@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-5">
+                <form id="registration" class="registration-form">
+                    <div class="alert alert-dismissible" :class="alertColorTheme" v-show="showAlert">
+                        {{ message }}
+                        <div class="close" @click="showAlert = false">
+                          <span aria-hidden="true">&times;</span>
+                        </div>
+                    </div>
+
+                    <h4>Registration</h4>
+                    <p>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text rounded-0">+62</span>
+                            </div>
+                            <input type="text" id="number" class="form-control rounded-0" placeholder="Mobile number" v-model="formData.mobileNumber" onkeypress="return isNumber(event)" required>
+                        </div>
+                        <span id="err-msg-number" class="err-msg float-right" v-show="false">*Please input a valid number</span>
+                    </p>    
+                    <p>
+                        <input type="text" id="firstname" class="form-control rounded-0" placeholder="First name" v-model="formData.firstName" required>
+                        <span id="err-msg-firstname" class="err-msg float-right" v-show="false">*Please fill out this field</span id="err-msg-firstname">
+                    </p>
+                    <p>
+                        <input type="text" id="lastname" class="form-control rounded-0" placeholder="Last name" v-model="formData.lastName" required>
+                        <span id="err-msg-lastname" class="err-msg float-right" v-show="false">*Please fill out this field</span id="err-msg-lastname">
+                    </p>
+
+                    <h6>Date of Birth</h6>
+                    <p>
+                        <div class="row">
+                            <div class="col">
+                                <select class="form-control" v-model="formData.birthDate.month" @change="setDate($event)">
+                                    <option value="0">Month</option>
+                                    <option v-for="month in months">{{ month }}</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select class="form-control" v-model="formData.birthDate.date">
+                                    <option value="0">Date</option>
+                                    <option v-for="d in date">{{ d }}</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select class="form-control" v-model="formData.birthDate.year">
+                                    <option value="0">Year</option>
+                                    <option v-for="year in years">{{ year }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <span id="err-msg-date" class="err-msg float-right" v-show="false">*Please input a valid date</span>
+                    </p>
+                    
+                    <p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" value="1" v-model="formData.gender" checked="false">
+                            <label class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" value="0" v-model="formData.gender" checked="false">
+                            <label class="form-check-label">Female</label>
+                        </div>
+                    </p>
+
+                    <p>
+                        <input type="text" id="email" class="form-control rounded-0" v-model="formData.email" placeholder="Email" required>
+                        <span id="err-msg-email" class="err-msg float-right" v-show="false">*Please input a valid email</span id="err-msg-number">
+                    </p>
+
+                    <p>
+                        <input type="submit" class="btn btn-primary btn-block" @click="submitRegister()" value="Register">
+                        <div class="btn btn-primary btn-block" @click="goToLoginPage()" v-show="showLoginButton">Login</div>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/foot-script') %>
+    <script>
+        <%- include('register.js') %>
+    </script>
+</body>
+</html>
